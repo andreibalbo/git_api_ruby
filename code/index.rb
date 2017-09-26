@@ -1,5 +1,5 @@
 require 'sinatra'
-
+require 'erb'
 
 set :bind, '0.0.0.0'
 
@@ -9,10 +9,14 @@ get '/' do
 </head>
 <body>
 
-<p>lololol</p>
+<meta http-equiv="refresh" content="0; url=/init" />
 
 
-</body>
-</html>'
+</body>'
 end
+
+get '/init' do
+	erb :init
+end
+
 
