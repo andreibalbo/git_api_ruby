@@ -4,7 +4,6 @@ services:
     build: .
     ports:
      - "4567:4567"
-     - "443:443"
     command: tail -F anything
     volumes:
      - ./code:/usr/src/app/
