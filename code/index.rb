@@ -6,6 +6,11 @@ require 'uri'
 require 'sinatra/reloader'
 require 'json'
 
+#classes
+require_relative 'SqlConnection'
+require_relative 'DbConnection'
+require_relative 'GitTrends'
+
 set :bind, '0.0.0.0'
 
 set :public_folder, File.dirname(__FILE__) + '/static'
@@ -33,20 +38,27 @@ get '/img/:file' do
 end
 
 get '/connect' do  
-  
-#my = Mysql.new(hostname, username, password, databasename)  
-con = Mysql.new('db', 'root', 'example') 
-puts con.get_server_info 
-rs = con.query('CREATE DATABASE gitapidb;')  
-rs = con.query('use gitapidb;')
+
+
+sql = SqlConnection.new
+sql.connect('db', 'root', 'example')
+sql.create_db('gitapidb')
+sql.use_db('gitapidb')
+#con = Mysql.new('db', 'root', 'example') 
+#puts con.get_server_info 
+#rs = con.query('CREATE DATABASE gitapidb;')  
+#rs = con.query('use gitapidb;')
 "database criada com sucesso"
 end
 
 get '/ctable' do  
-  
-con = Mysql.new('db', 'root', 'example', 'gitapidb') 
-puts con.get_server_info
-rs = con.query('CREATE TABLE repositories (id int,user varchar(50),name varchar(100),description varchar(500),stars int)')  
+
+con = DbConnection.new
+con.connect('db', 'root', 'example', 'gitapidb')
+con.query('CREATE TABLE repositories (id int,user varchar(50),name varchar(100),description varchar(500),stars int)')
+#con = Mysql.new('db', 'root', 'example', 'gitapidb') 
+#puts con.get_server_info
+#rs = con.query('CREATE TABLE repositories (id int,user varchar(50),name varchar(100),description varchar(500),stars int)')  
 "tabela criada com sucesso"
 
 end
@@ -56,26 +68,22 @@ get '/get_trend' do
 	
 	msg= ""
 
-	con = Mysql.new('db', 'root', 'example', 'gitapidb') 
-	rs = con.query('delete from repositories where 1;')  
+	con = DbConnection.new
+	con.connect('db', 'root', 'example', 'gitapidb')
+	con.query('delete from repositories where 1')
+	#con = Mysql.new('db', 'root', 'example', 'gitapidb') 
+	#rs = con.query('delete from repositories where 1;')  
 
-	url = 'https://api.github.com/search/repositories?q=created:>2000-01-01&sort=stars&order=desc'
-	
-	uri = URI(url)
-	
-	request = Net::HTTP::Get.new(uri.path)
-
-
-	request['Content-Type'] = 'application/json'
-	request["User-Agent"] = "Awesome-Octocat-App"
-
-	response = Net::HTTP.get_response(uri)
+	#url = 'https://api.github.com/search/repositories?q=created:>2000-01-01&sort=stars&order=desc'
+	#uri = URI(url)
+	#request = Net::HTTP::Get.new(uri.path)
+	#request['Content-Type'] = 'application/json'
+	#request["User-Agent"] = "Awesome-Octocat-App"
+	#response = Net::HTTP.get_response(uri)
 	#puts response.body
-	my_hash = JSON.parse(response.body)
-
+#	my_hash = JSON.parse(response.body)
 	#puts my_hash
-
-	num_items = my_hash["items"].count
+#	num_items = my_hash["items"].count
 	i = 0
 
 	while i < num_items do
