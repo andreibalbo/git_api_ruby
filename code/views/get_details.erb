@@ -1,0 +1,138 @@
+<head>
+    <title>App</title>
+</head>
+<body>
+
+<div class="headbar">
+
+    <p class="title">GIT_API</p>
+    <p class="info">Andrei Balbo</p>
+</div>
+
+<div class="bodyback">
+    <p class="texto1" style="left:40px;">User info:</p>
+    <div class="userinfo">
+        <img style="position:relative;left:20px;top:20px;width:80px;height:80px;" src=<%= hash2['avatar_url']%>>
+        <p class="texto1" style="top:5px;left: 110px;">User: <%= hash2['user']%></p>
+        <p class="texto1" style="top:40px;left: 110px;">Id: <%= hash2['user_id']%></p>
+
+
+        <a style="position: absolute;top: 120px;left: 50px; font-size: 20px;color:white;" href=<%= hash2['user_url']%>>View GitHub User profile</a>
+    </div>
+    <p class="texto1" style="top:240px;left:40px;">Repository info:</p>
+
+    <div class="repoinfo">
+        <p class="texto1" style="top:5px;left: 20px;">Name: <%= hash2['name']%></p>
+        <p class="texto1" style="top:40px;left: 20px;">Id: <%= hash2['id']%></p>
+        <p class="texto2" style="top: 15px;left: 680px;">Size: <%= hash2['size']%> Bytes</p>
+        <p class="texto2" style="top: 40px;left: 680px;">Created at: <%= hash2['created']%></p>
+        <p class="texto2" style="top: 65px;left: 680px;">Updated at: <%= hash2['updated']%></p>
+        <p class="texto2" style="top: 90px;left: 680px;">Pushed at: <%= hash2['pushed']%></p>
+
+        <img src="/img/star-128.png" title="Stars count" style="position: absolute;top: 20px;left:460px; height: 50px;width: 50px;">
+        <p class="texto2" style="top: 50px;left: 470px;"><%= hash2['stars']%></p>
+
+        <img src="/img/bino.png" title="Watchers count" style="position: absolute;top: 20px;left:530px; height: 50px;width: 50px;">
+        <p class="texto2" style="top: 50px;left: 540px;"><%= hash2['watchers']%></p>
+
+        <img src="/img/subs.png" title="Subs count" style="position: absolute;top: 20px;left:600px; height: 50px;width: 50px;">
+        <p class="texto2" style="top: 50px;left: 610px;"><%= hash2['subscribers']%></p>
+
+        <p class="texto2" style="top: 160px;left: 20px;">Description: <%= hash2['description']%></p>
+
+        <a style="position: absolute;top: 300px;left: 50px; font-size: 20px;color:white;" href=<%= hash2['repo_url']%>>View Github repository page</a>
+
+        <% if !hash2['homepage'].nil?%>
+        <a style="position: absolute;top: 270px;left: 50px; font-size: 20px;color:white;" href=<%= hash2['homepage']%>>View repository homepage</a>
+        <%end%>
+    </div>
+
+
+</div>
+
+</body>
+
+<style>
+
+    .headbar{
+        align-items: center;
+        position: absolute;
+        width: 1200px;
+        height: 50px;
+        background: black; /* For browsers that do not support gradients */
+        background: -webkit-linear-gradient(dimgray, black, dimgray); /* For Safari 5.1 to 6.0 */
+        background: -o-linear-gradient(dimgray, black, dimgray); /* For Opera 11.1 to 12.0 */
+        background: -moz-linear-gradient(dimgray, black, dimgray); /* For Firefox 3.6 to 15 */
+        background: linear-gradient(dimgray, black, dimgray); /* Standard syntax */
+
+
+    }
+    .title{
+        position: absolute;
+        left: 10px;
+        margin:5px;
+        color: white;
+        font-weight: bold;
+        font-family: Calibri;
+        font-size: 25px;
+        -webkit-text-stroke-width: 1px;
+        -webkit-text-stroke-color: black;
+
+
+    }
+    .info{
+        position: absolute;
+        left: 1070px;
+        margin:10px;
+        color: white;
+        font-weight: bold;
+        font-family: Calibri;
+        font-size: 20px;
+        -webkit-text-stroke-width: 1px;
+        -webkit-text-stroke-color: black;
+    }
+    .bodyback{
+        top: 50px;
+        position: absolute;
+        background-position-x: -150px;
+        background-position-y: -90px;
+
+        background-image: url('/img/cc-wallpaper-desktop.png');
+        background-size: 1400px 800px;
+        width: 1200px;
+        height: 700px;
+    }
+    .userinfo{
+        width:400px;
+        height: 180px;
+        background-color: rgba(255, 255, 255, 0.2);;
+
+        position: absolute;
+        top:60px;
+        left:20px;
+        
+    }
+    .repoinfo{
+        width:1000px;
+        height: 350px;
+        background-color: rgba(255, 255, 255, 0.2);;
+
+        position: absolute;
+        top:300px;
+        left:20px;
+
+    }
+    .texto1{
+        position: absolute;
+        color: white;
+        font-weight: bold;
+        font-family: Calibri;
+        font-size:25px;
+    }
+    .texto2{
+        position: absolute;
+        color: white;
+        font-weight: bold;
+        font-family: Calibri;
+        font-size:20px;
+    }
