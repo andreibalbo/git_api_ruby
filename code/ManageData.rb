@@ -9,7 +9,7 @@ class ManageData
 
 	# Those gsubs are to avoid problems with quotes.
 	desc = h["items"][i]["description"];
-	desc = desc.to_s.gsub("'", " ") if !desc.nil?
+	desc = desc.to_s.gsub("'", " ") unless desc.nil?
 
     stars = h["items"][i]["stargazers_count"];
 
