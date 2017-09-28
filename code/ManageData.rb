@@ -18,16 +18,10 @@ class ManageData
   end
 
   def query_to_list(query)
-    i = 0
-	arr = Array.new(query.num_rows){Array.new(5)}
-	while i < query.num_rows do
+	arr = []
+	query.num_rows.times do
 	  row = query.fetch_row
-	  arr[i][0] = row[0]
-	  arr[i][1] = row[1]
-	  arr[i][2] = row[2]
-	  arr[i][3] = row[3]
-	  arr[i][4] = row[4]
-	  i = i + 1
+	  arr.push(row)
 	end
 	return arr
   end
