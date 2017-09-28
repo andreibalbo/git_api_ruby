@@ -31,7 +31,7 @@ end
 
 # Adding parameters to display images and stuff.
 get '/img/:file' do
-  	send_file('/usr/src/app/img/'+params[:file], :disposition => 'inline')
+  	send_file('/usr/src/app/img/' + params[:file], :disposition => 'inline')
 end
 
 get '/connect' do  
@@ -40,19 +40,16 @@ get '/connect' do
 	sv = sql.connect('db', 'root', 'example')
 	sv.query("CREATE DATABASE 'gitapidb'")
 	sql.use_db('gitapidb')
-
-	"database criada com sucesso"
+	"Database criada com sucesso."
 end
 
 get '/ctable' do  
 	# Creating table to put repos info.
 	con = DbConnection.new
 	con.connect('db', 'root', 'example', 'gitapidb')
-	con.query('CREATE TABLE repositories (id int,user varchar(50),name varchar(100),description varchar(500),stars int)')
-	"tabela criada com sucesso"
-
+	con.query('CREATE TABLE repositories (id INT, user VARCHAR(50), name VARCHAR(100), description VARCHAR(500), stars INT)')
+	"Tabela criada com sucesso."
 end
-
 
 get '/get_trend' do  
 	msg= ""
@@ -72,7 +69,7 @@ get '/get_trend' do
 		md = ManageData.new
 	 	sql = md.hash_to_sql(my_hash,i)
     	rs = sv.query(sql)
-    	msg += "#{sql} <br>"
+    	msg << "#{sql} <br>"
     	i= i+1
 	end
 
@@ -87,7 +84,7 @@ get '/list_trend' do
 	# Gets repositories basic information to display.
 	con = DbConnection.new
 	sv = con.connect('db', 'root', 'example', 'gitapidb')
-	rs = sv.query('select * from repositories order by stars desc;')
+	rs = sv.query('SELECT * FROM repositories ORDER BY stars DESC;')
 	
 	# Convert the query using 'fetch_row' and store it in an array.
 	md = ManageData.new
@@ -113,7 +110,7 @@ get '/get_details/:id' do
 
 	# Get info directly from the repository search.
 	get = GitTrends.new
-	my_hash = get.repo_info(user,nome)
+	my_hash = get.repo_info(user, nome)
 
 	erb :get_details, :locals => {:my_hash => my_hash}
 
