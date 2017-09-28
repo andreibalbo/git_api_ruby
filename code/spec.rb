@@ -73,11 +73,16 @@ describe ManageData do
   describe "When the user calls the function to convert the hash into an sql statement." do
     it "Must return a sql that matches the hash data." do
     # Change it to use a generic hash
-	  rs = @g.get_git_trends
+	  h = {'items'=>{0=>{'name'=>{},'id'=>{},'description'=>{},'stargazers_count'=>{},'owner'=>{'login'=>{}}}}}
+	  h['items'][0]['name'] = 'testenome'
+	  h['items'][0]['id'] = '1'
+	  h['items'][0]['description'] = 'testedesc'
+	  h['items'][0]['stargazers_count'] = '2'
+	  h['items'][0]['owner']['login'] = 'testelogin'
 
-    sql = @md.hash_to_sql(rs,0)
+    sql = @md.hash_to_sql(h,0)
 
-    sql.must_equal("INSERT INTO repositories (id, user, name, description, stars) VALUES ('8493324', 'bennyguitar', 'CollapseClick', 'A collapsible list that functions like a UITableView, except you can collapse and open cells on a click. Feed it UIViews for what is shown when each cell is open. Works via delegation similar to UITableView.', '562');")
+    sql.must_equal("INSERT INTO repositories (id, user, name, description, stars) VALUES ('1', 'testelogin', 'testenome', 'testedesc', '2');")
     end
   end
 
