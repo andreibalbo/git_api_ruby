@@ -39,7 +39,7 @@ get '/connect' do
 	sql = SqlConnection.new
 	sv = sql.connect('db', 'root', 'example')
 
-	sv.query("CREATE DATABASE 'gitapidb'")
+	rs = sv.query("CREATE DATABASE gitapidb")
 
 	sql.use_db('gitapidb')
 
@@ -49,7 +49,7 @@ end
 get '/ctable' do  
 	# Creating table to put repos info.
 	con = DbConnection.new
-	con.connect('db', 'root', 'example', 'gitapidb')
+	con = con.connect('db', 'root', 'example', 'gitapidb')
 
 	con.query('CREATE TABLE repositories (id INT, user VARCHAR(50), name VARCHAR(100), description VARCHAR(500), stars INT)')
 
