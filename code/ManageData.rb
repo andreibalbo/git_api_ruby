@@ -2,13 +2,15 @@ class ManageData
   def hash_to_sql(h, i)
   	id = h["items"][i]["id"]
 	user = h["items"][i]["owner"]["login"];
-	user.gsub("'"," ")
+	user = user.gsub("'"," ")
+
 	nome = h["items"][i]["name"];
-	nome.gsub("'"," ")
+	nome = nome.gsub("'"," ")
+
+	# Those gsubs are to avoid problems with quotes.
 	desc = h["items"][i]["description"];
-	if !desc.nil?
-	  desc = desc.to_s.gsub("'", " ")
-    end
+	desc = desc.to_s.gsub("'", " ") if !desc.nil?
+
     stars = h["items"][i]["stargazers_count"];
 
     sql = "INSERT INTO repositories (id, user, name, description, stars) VALUES ('#{id}', '#{user}', '#{nome}', '#{desc}', '#{stars}');"

@@ -71,16 +71,13 @@ get '/get_trend' do
 	num_items = my_hash["items"].count
 
 	# While to print and query the statements. (Change to .each or something)
-	i = 0
-	while i < num_items do
-		md = ManageData.new
+	md = ManageData.new
+	num_items.times do |i|
 	 	sql = md.hash_to_sql(my_hash,i)
 
     	rs = sv.query(sql)
 
     	msg << "#{sql} <br>"
-
-    	i= i+1
 	end
 	# Printing the message in the browser.
 	return msg
@@ -93,7 +90,7 @@ get '/list_trend' do
 	con = DbConnection.new
 	sv = con.connect('db', 'root', 'example', 'gitapidb')
 
-	rs = sv.query('SELECT * FROM repositories ORDER BY stars DESC;')
+	rs = sv.query('SELECT * FROM repositories ORDER BY stars DESC')
 	
 	# Convert the query using 'fetch_row' and store it in an array.
 	md = ManageData.new
