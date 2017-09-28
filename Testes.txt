@@ -1,3 +1,5 @@
 Testes
 
 Classes: SqlConnection, Db Connection, GitTrends e ManageData
+
+Criar testes para cada metodo de cada classe

@@ -29,30 +29,5 @@ class ManageData
 		return arr
 	end
 
-	def hash_to_details(h)
-		hash2 = {}
-		#user
-		hash2['user'] = h["owner"]["login"];
-		hash2['user_id']= h["owner"]["id"];
-		hash2['avatar_url'] = h["owner"]["avatar_url"];
-		hash2['user_url'] = h["owner"]["html_url"];
-
-		#repo
-		hash2['id'] = h["id"];
-		hash2['name'] = h["name"];
-		hash2['description'] = h["description"];
-		hash2['stars'] = h["stargazers_count"];
-		hash2['repo_url'] = h["html_url"];
-		hash2['created'] = h["created_at"];
-		hash2['updated'] = h["updated_at"];
-		hash2['pushed'] = h["pushed_at"];
-		hash2['watchers'] = h["watchers_count"];
-		hash2['language'] = h["language"];
-		hash2['homepage'] = h["homepage"];
-		hash2['size'] = h["size"];
-		hash2['subscribers'] = h["subscribers_count"];
-	
-		return hash2
-	end
 
 end

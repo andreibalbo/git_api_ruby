@@ -40,8 +40,8 @@ get '/connect' do
 
 
 	sql = SqlConnection.new
-	sql.connect('db', 'root', 'example')
-	sql.create_db('gitapidb')
+	sv = sql.connect('db', 'root', 'example')
+	sv.query("CREATE DATABASE 'gitapidb'")
 	sql.use_db('gitapidb')
 
 	"database criada com sucesso"
@@ -65,8 +65,8 @@ get '/get_trend' do
 	msg= ""
 
 	con = DbConnection.new
-	con.connect('db', 'root', 'example', 'gitapidb')
-	con.query('delete from repositories where 1')
+	sv = con.connect('db', 'root', 'example', 'gitapidb')
+	sv.query('delete from repositories where 1')
 
 	get = GitTrends.new
 	my_hash = get.get_git_trends
@@ -77,7 +77,7 @@ get '/get_trend' do
 	while i < num_items do
 		md = ManageData.new
 	 	sql = md.hash_to_sql(my_hash,i)
-    	rs = con.query(sql)
+    	rs = sv.query(sql)
     	msg += "#{sql} <br>"
     	i= i+1
 	end
@@ -89,8 +89,8 @@ end
 get '/list_trend' do  
 
 	con = DbConnection.new
-	con.connect('db', 'root', 'example', 'gitapidb')
-	rs = con.query('select * from repositories order by stars desc;')
+	sv = con.connect('db', 'root', 'example', 'gitapidb')
+	rs = sv.query('select * from repositories order by stars desc;')
 	
 	md = ManageData.new
 	arr = md.query_to_list(rs)
@@ -107,8 +107,8 @@ get '/get_details/:id' do
 	id = params[:id]
 
 	con = DbConnection.new
-	con.connect('db', 'root', 'example', 'gitapidb')
-	rs = con.query("SELECT user, name FROM repositories WHERE id=#{id}")	
+	sv = con.connect('db', 'root', 'example', 'gitapidb')
+	rs = sv.query("SELECT user, name FROM repositories WHERE id=#{id}")	
 	res = rs.fetch_row
 	user = res[0]
 	nome = res[1]
@@ -116,10 +116,8 @@ get '/get_details/:id' do
 	get = GitTrends.new
 	my_hash = get.repo_info(user,nome)
 
-	md = ManageData.new
-
-	hash2 = md.hash_to_details(my_hash)
-	erb :get_details, :locals => {:hash2 => hash2}
+	
+	erb :get_details, :locals => {:my_hash => my_hash}
 
 
 end

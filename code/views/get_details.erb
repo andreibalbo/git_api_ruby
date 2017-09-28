@@ -12,38 +12,38 @@
 <div class="bodyback">
     <p class="texto1" style="left:40px;">User info:</p>
     <div class="userinfo">
-        <img style="position:relative;left:20px;top:20px;width:80px;height:80px;" src=<%= hash2['avatar_url']%>>
-        <p class="texto1" style="top:5px;left: 110px;">User: <%= hash2['user']%></p>
-        <p class="texto1" style="top:40px;left: 110px;">Id: <%= hash2['user_id']%></p>
+        <img style="position:relative;left:20px;top:20px;width:80px;height:80px;" src=<%= my_hash["owner"]["avatar_url"];%>>
+        <p class="texto1" style="top:5px;left: 110px;">User: <%= my_hash["owner"]["login"];%></p>
+        <p class="texto1" style="top:40px;left: 110px;">Id: <%= my_hash["owner"]["id"]%></p>
 
 
-        <a style="position: absolute;top: 120px;left: 50px; font-size: 20px;color:white;" href=<%= hash2['user_url']%>>View GitHub User profile</a>
+        <a style="position: absolute;top: 120px;left: 50px; font-size: 20px;color:white;" href=<%= my_hash["owner"]["html_url"]%>>View GitHub User profile</a>
     </div>
     <p class="texto1" style="top:240px;left:40px;">Repository info:</p>
 
     <div class="repoinfo">
-        <p class="texto1" style="top:5px;left: 20px;">Name: <%= hash2['name']%></p>
-        <p class="texto1" style="top:40px;left: 20px;">Id: <%= hash2['id']%></p>
-        <p class="texto2" style="top: 15px;left: 680px;">Size: <%= hash2['size']%> Bytes</p>
-        <p class="texto2" style="top: 40px;left: 680px;">Created at: <%= hash2['created']%></p>
-        <p class="texto2" style="top: 65px;left: 680px;">Updated at: <%= hash2['updated']%></p>
-        <p class="texto2" style="top: 90px;left: 680px;">Pushed at: <%= hash2['pushed']%></p>
+        <p class="texto1" style="top:5px;left: 20px;">Name: <%= my_hash["name"]%></p>
+        <p class="texto1" style="top:40px;left: 20px;">Id: <%= my_hash['id']%></p>
+        <p class="texto2" style="top: 15px;left: 680px;">Size: <%= my_hash['size']%> Bytes</p>
+        <p class="texto2" style="top: 40px;left: 680px;">Created at: <%= my_hash['created_at']%></p>
+        <p class="texto2" style="top: 65px;left: 680px;">Updated at: <%= my_hash['updated_at']%></p>
+        <p class="texto2" style="top: 90px;left: 680px;">Pushed at: <%= my_hash['pushed_at']%></p>
 
         <img src="/img/star-128.png" title="Stars count" style="position: absolute;top: 20px;left:460px; height: 50px;width: 50px;">
-        <p class="texto2" style="top: 50px;left: 470px;"><%= hash2['stars']%></p>
+        <p class="texto2" style="top: 50px;left: 470px;"><%= my_hash['stargazers_count']%></p>
 
         <img src="/img/bino.png" title="Watchers count" style="position: absolute;top: 20px;left:530px; height: 50px;width: 50px;">
-        <p class="texto2" style="top: 50px;left: 540px;"><%= hash2['watchers']%></p>
+        <p class="texto2" style="top: 50px;left: 540px;"><%= my_hash['watchers_count']%></p>
 
         <img src="/img/subs.png" title="Subs count" style="position: absolute;top: 20px;left:600px; height: 50px;width: 50px;">
-        <p class="texto2" style="top: 50px;left: 610px;"><%= hash2['subscribers']%></p>
+        <p class="texto2" style="top: 50px;left: 610px;"><%= my_hash['subscribers_count']%></p>
 
-        <p class="texto2" style="top: 160px;left: 20px;">Description: <%= hash2['description']%></p>
+        <p class="texto2" style="top: 160px;left: 20px;">Description: <%= my_hash['description']%></p>
 
-        <a style="position: absolute;top: 300px;left: 50px; font-size: 20px;color:white;" href=<%= hash2['repo_url']%>>View Github repository page</a>
+        <a style="position: absolute;top: 300px;left: 50px; font-size: 20px;color:white;" href=<%= my_hash['html_url']%>>View Github repository page</a>
 
-        <% if !hash2['homepage'].nil?%>
-        <a style="position: absolute;top: 270px;left: 50px; font-size: 20px;color:white;" href=<%= hash2['homepage']%>>View repository homepage</a>
+        <% if !my_hash['homepage'].nil?%>
+        <a style="position: absolute;top: 270px;left: 50px; font-size: 20px;color:white;" href=<%= my_hash['homepage']%>>View repository homepage</a>
         <%end%>
     </div>
 
