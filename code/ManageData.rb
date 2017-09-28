@@ -10,8 +10,9 @@ class ManageData
 	  desc = desc.to_s.gsub("'", " ")
     end
     stars = h["items"][i]["stargazers_count"];
+
     sql = "INSERT INTO repositories (id, user, name, description, stars) VALUES ('#{id}', '#{user}', '#{nome}', '#{desc}', '#{stars}');"
-      return sql
+    return sql
   end
 
   def query_to_list(query)

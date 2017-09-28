@@ -5,5 +5,4 @@ class SqlConnection
 	def use_db(n)
 		return @con.query("use #{n}")
 	end
-
 end
