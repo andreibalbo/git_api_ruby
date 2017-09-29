@@ -9,4 +9,4 @@ The application's previous version can be accessed through this [Link](https://g
 * https://github.com/nixme/pry-nav
 * https://github.com/agis/git-style-guide
   
-  * http://api.rubyonrails.org/
+* http://api.rubyonrails.org/
